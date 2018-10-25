@@ -1,7 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SocialShare from './components/SocialShare.jsx';
-import Description from './components/Description.jsx'
+import Specs from './components/Specs.jsx'
+import Shipping from './components/Shipping.jsx'
+
+import styled from 'styled-components';
+
+
+const H2 = styled.h2`
+  font-family: gordita,Helvetica,Arial,Verdana,sans-serif;
+  font-size: 10px;
+  font-weight: 550;
+  line-height: inherit;
+  color: #042b28;
+  margin-bottom: 20px;
+  max-width: none!important;
+  margin: 0 0 16px;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  display: block;
+`
 
 class App extends React.Component {
   constructor(props) {
@@ -16,31 +36,35 @@ class App extends React.Component {
                          'https://www.facebook.com/v2.9/dialog/share?app_id=142386762546138&channel_url=https%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter%2Fr%2F__Bz3h5RzMx.js%3Fversion%3D42%23cb%3Dfb2994efa4d47%26domain%3Dwww.massdrop.com%26origin%3Dhttps%253A%252F%252Fwww.massdrop.com%252Ff3f88d7eeee8d64%26relation%3Dopener&display=popup&e2e=%7B%7D&fallback_redirect_uri=https%3A%2F%2Fwww.massdrop.com%2Fbuy%2Fmassdrop-ctrl-high-profile-mechanical-keyboard&href=https%3A%2F%2Fwww.massdrop.com%2Fbuy%2Fmassdrop-ctrl-high-profile-mechanical-keyboard%3Freferer%3DBKMU4J%26utm_source%3Dfbshare%26s%3Dfb&locale=en_US&mobile_iframe=false&next=https%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter%2Fr%2F__Bz3h5RzMx.js%3Fversion%3D42%23cb%3Df208862e79761e4%26domain%3Dwww.massdrop.com%26origin%3Dhttps%253A%252F%252Fwww.massdrop.com%252Ff3f88d7eeee8d64%26relation%3Dopener%26frame%3Df1c9c7f3733784%26result%3D%2522xxRESULTTOKENxx%2522&sdk=joey&version=v2.9' 
 
       ],
-      description:''
+      description:'',
+      estimatedDate:'Nov 27, 2018 PT'
     }
     
   }
 
-  // componentDidMount() {
-  //   axios.get('/main/description')
-  //     .then((response) => {
-  //       this.setState({
-  //         description: response
-  //       })
-  //     })
-  // }
+  componentDidMount() {
+    // axios.get('/main/description', {params: "headPhones"})
+    //   .then((response) => {
+    //     this.setState({
+    //       description: response
+    //     })
+    //   })
+  }
 
 
   render () {
-    return (<div>
-      {/* <h1>Hello World!</h1> */}
-      <section>
-        <SocialShare icons={this.state.socialShareIcon}/>
-      </section>
-      {/* <section>
-        <Description desc={this.state.description}></Description>
-      </section> */}
-    </div>)
+    return (
+      <div>
+        <section>
+          <SocialShare icons={this.state.socialShareIcon}/>
+        </section>
+
+        <section>
+          <H2>Shipping</H2>
+          <Shipping estimatedDate={this.state.estimatedDate}></Shipping>
+        </section>
+      </div>
+    )
   }
 }
 
