@@ -1,31 +1,68 @@
-// var mongoose = require('mongoose');
-// mongoose.connect('mongodb://localhost/test');
+var mongoose = require('mongoose');
+var data = require('./included.js')
+const fs = require('fs');
+mongoose.connect('mongodb://localhost/description');
 
-// var db = mongoose.connection;
+var db = mongoose.connection;
 
-// db.on('error', function() {
-//   console.log('mongoose connection error');
-// });
+db.on('error', function() {
+  console.log('mongoose connection error');
+});
 
-// db.once('open', function() {
-//   console.log('mongoose connected successfully');
-// });
+db.once('open', function() {
+  //seedDatabase();
+  console.log('mongoose connected successfully');
+});
 
-// var itemSchema = mongoose.Schema({
-//   quantity: Number,
-//   description: String
-// });
+var overviewSchema = mongoose.Schema({
+  prod_name: String,
+  specs: Array,
+  included: Array,
+  boxContent: Array,
+  descriptionHeader: Array,
+  description: Array,
+  imageHeader: Array,
+  images: Array,
+  shippingDate: String,
+  details: Array
+});
 
-// var Item = mongoose.model('Item', itemSchema);
+var Overview = mongoose.model('Overview', overviewSchema);
 
-// var selectAll = function(callback) {
-//   Item.find({}, function(err, items) {
-//     if(err) {
-//       callback(err, null);
-//     } else {
-//       callback(null, items);
-//     }
-//   });
-// };
+  
+var saveDescription = (info, callback) => {
+  console.log('info looks like : ', info);
+  let overview = new Overview({
+    prod_name: info.prod_name,
+    specs: info.specs,
+    included: info.included,
+    boxContent: info.boxContent,
+    descriptionHeader: info.descriptionHeader,
+    description: info.description,
+    imageHeader: info.imageHeader,
+    images: info.images,
+    shippingDate: info.shippingDate,
+    details: info.details
+  }).save();
+  callback(null);
+};
 
-// module.exports.selectAll = selectAll;
+var seedDatabase = () => {
+  console.log(data.file);
+  data.file.forEach((prod) => {
+    console.log(prod)
+    saveDescription(prod, () => {
+      console.log('Inserted');
+    })
+  })
+}
+
+var getOverviewData = (params) => {
+  return Overview.find({prod_name: params});
+}
+
+var get = () => {
+
+}
+
+module.exports = {getOverviewData};

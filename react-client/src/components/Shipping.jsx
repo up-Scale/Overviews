@@ -4,12 +4,13 @@ import styled from 'styled-components';
 
 const P = styled.p`
   display: block;
-  font-size: 9px;
+  font-size: 8.5px;
   margin-block-start: 1em;
   margin-block-end: 1em;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   font-family: Lato,Helvetica,Arial,Verdana,sans-serif;
+  color: #5b6a69;
 `
 
 const Shipping = (props) => {
