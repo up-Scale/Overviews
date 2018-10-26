@@ -5,6 +5,7 @@ import Specs from './components/Specs.jsx'
 import Shipping from './components/Shipping.jsx'
 
 import styled from 'styled-components';
+import axios from 'axios'
 
 
 const H2 = styled.h2`
@@ -36,29 +37,70 @@ class App extends React.Component {
                          'https://www.facebook.com/v2.9/dialog/share?app_id=142386762546138&channel_url=https%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter%2Fr%2F__Bz3h5RzMx.js%3Fversion%3D42%23cb%3Dfb2994efa4d47%26domain%3Dwww.massdrop.com%26origin%3Dhttps%253A%252F%252Fwww.massdrop.com%252Ff3f88d7eeee8d64%26relation%3Dopener&display=popup&e2e=%7B%7D&fallback_redirect_uri=https%3A%2F%2Fwww.massdrop.com%2Fbuy%2Fmassdrop-ctrl-high-profile-mechanical-keyboard&href=https%3A%2F%2Fwww.massdrop.com%2Fbuy%2Fmassdrop-ctrl-high-profile-mechanical-keyboard%3Freferer%3DBKMU4J%26utm_source%3Dfbshare%26s%3Dfb&locale=en_US&mobile_iframe=false&next=https%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter%2Fr%2F__Bz3h5RzMx.js%3Fversion%3D42%23cb%3Df208862e79761e4%26domain%3Dwww.massdrop.com%26origin%3Dhttps%253A%252F%252Fwww.massdrop.com%252Ff3f88d7eeee8d64%26relation%3Dopener%26frame%3Df1c9c7f3733784%26result%3D%2522xxRESULTTOKENxx%2522&sdk=joey&version=v2.9' 
 
       ],
-      description:'',
-      estimatedDate:'Nov 27, 2018 PT'
+      description:[],
+      shippingDate:'Nov 27, 2018 PT',
+      specs:['Material: Copper',
+        'Titanium button',
+        'Mode sequence: L-M-H',
+        'Battery: 1 x AAA',
+        'Removable, reversible stainless steel pocket clip',
+        'IPX-8 waterproof',
+        '1.5 m impact resistant',
+        'Working voltage: 0.9 – 1.5V',
+        'Dimensions: 2.9 x 0.6 in (7.4 x 1.5 cm)',
+        'Weight (with battery): 1.5 oz (42.5 g)'],
+      prod_name: 'massdrop-copper-aaa-pocket-flashlight',
+      included: [],
+      boxContent: [],
+      descriptionHeader: [],
+      imageHeader: [],
+      images: [],
+      details: []
     }
-    
+    this.getProductData = this.getProductData.bind(this)
   }
 
   componentDidMount() {
-    // axios.get('/main/description', {params: "headPhones"})
-    //   .then((response) => {
-    //     this.setState({
-    //       description: response
-    //     })
-    //   })
+    console.log('im mounting!')
+    this.getProductData(this.state.prod_name);
   }
+
+  getProductData(prod_name) {
+    axios.get(`/buy/${prod_name}/overview`)
+      .then((response) => {
+        console.log(response.data[0]);
+          this.setState({
+            specs: response.data[0].specs,
+            included: response.data[0].included,
+            boxContent: response.data[0].boxContent,
+            descriptionHeader: response.data[0].descriptionHeader,
+            description: response.data[0].description,
+            imageHeader: response.data[0].imageHeader,
+            images: response.data[0].images,
+            shippingDate: response.data[0].shippingDate,
+            details: response.data[0].details,
+            prod_name: response.data[0].prod_name
+          })
+      })
+  }
+
+
 
 
   render () {
     return (
       <div>
         <section>
-          <SocialShare icons={this.state.socialShareIcon}/>
+          <SocialShare onLoad={() => {this.getProductData(this.state.prod_name)}} icons={this.state.socialShareIcon}/>
         </section>
-
+        <section>
+          <H2>Specs</H2>
+          <Specs specification={this.state.specs}></Specs>
+        </section>
+        <section>
+          <H2>Included</H2>
+          <Specs specification={this.state.included}></Specs>
+        </section>
         <section>
           <H2>Shipping</H2>
           <Shipping estimatedDate={this.state.estimatedDate}></Shipping>
