@@ -1,26 +1,11 @@
-const {db} = require('./index.js');
+const db = require('./index.js');
 var mongoose = require('mongoose');
 var data = require('./seed.js')
 
-var overviewSchema = mongoose.Schema({
-  prod_name: String,
-  specs: Array,
-  included: Array,
-  boxContent: Array,
-  descriptionHeader: Array,
-  description: Array,
-  imageHeader: Array,
-  images: Array,
-  shippingDate: String,
-  details: Array,
-  html: String
-});
 
-
-var Overview = mongoose.model('Overview', overviewSchema);
     
   var saveDescription = (info, callback) => {
-    let overview = new Overview({
+    let overview = new db.Overview({
       prod_name: info.prod_name,
       specs: info.specs,
       included: info.included,
