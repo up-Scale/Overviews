@@ -2,26 +2,22 @@ const {db} = require('./index.js');
 var mongoose = require('mongoose');
 var data = require('./seed.js')
 
-//db.overviews.drop();
+var overviewSchema = mongoose.Schema({
+  prod_name: String,
+  specs: Array,
+  included: Array,
+  boxContent: Array,
+  descriptionHeader: Array,
+  description: Array,
+  imageHeader: Array,
+  images: Array,
+  shippingDate: String,
+  details: Array,
+  html: String
+});
 
-  var overviewSchema = mongoose.Schema({
-    prod_name: String,
-    specs: Array,
-    included: Array,
-    boxContent: Array,
-    descriptionHeader: Array,
-    description: Array,
-    imageHeader: Array,
-    images: Array,
-    shippingDate: String,
-    details: Array,
-    html: String
-  });
-  
-  
-  var Overview = mongoose.model('Overview', overviewSchema);
-  
-  
+
+var Overview = mongoose.model('Overview', overviewSchema);
     
   var saveDescription = (info, callback) => {
     let overview = new Overview({
