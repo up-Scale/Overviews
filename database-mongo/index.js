@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
-var data = require('./included.js')
-const fs = require('fs');
+var data = require('./seed.js')
 mongoose.connect('mongodb://localhost/description');
 
 var db = mongoose.connection;
@@ -10,59 +9,75 @@ db.on('error', function() {
 });
 
 db.once('open', function() {
-  //seedDatabase();
+  // seedDatabase();
+  // saveOverviewMain(seed,() => {
+  //   console.log('Data entered');
+  // })
   console.log('mongoose connected successfully');
 });
 
-var overviewSchema = mongoose.Schema({
-  prod_name: String,
-  specs: Array,
-  included: Array,
-  boxContent: Array,
-  descriptionHeader: Array,
-  description: Array,
-  imageHeader: Array,
-  images: Array,
-  shippingDate: String,
-  details: Array
-});
+// var overviewSchema = mongoose.Schema({
+//   prod_name: String,
+//   specs: Array,
+//   included: Array,
+//   boxContent: Array,
+//   descriptionHeader: Array,
+//   description: Array,
+//   imageHeader: Array,
+//   images: Array,
+//   shippingDate: String,
+//   details: Array,
+//   html: String
+// });
 
-var Overview = mongoose.model('Overview', overviewSchema);
+// var overviewMainSchema = mongoose.Schema({
+//   html: String
+// })
+
+// var Overview = mongoose.model('Overview', overviewSchema);
+// var overviewMain = mongoose.model('OverviewMain', overviewMainSchema);
+
+// var saveOverviewMain = (info, callback) => {
+//   console.log(typeof info.file);
+//   let main = new overviewMain({
+//     html: info.file
+//   }).save();
+//   callback(null);
+// };
 
   
-var saveDescription = (info, callback) => {
-  console.log('info looks like : ', info);
-  let overview = new Overview({
-    prod_name: info.prod_name,
-    specs: info.specs,
-    included: info.included,
-    boxContent: info.boxContent,
-    descriptionHeader: info.descriptionHeader,
-    description: info.description,
-    imageHeader: info.imageHeader,
-    images: info.images,
-    shippingDate: info.shippingDate,
-    details: info.details
-  }).save();
-  callback(null);
-};
+// var saveDescription = (info, callback) => {
+//   let overview = new Overview({
+//     prod_name: info.prod_name,
+//     specs: info.specs,
+//     included: info.included,
+//     boxContent: info.boxContent,
+//     descriptionHeader: info.descriptionHeader,
+//     description: info.description,
+//     imageHeader: info.imageHeader,
+//     images: info.images,
+//     shippingDate: info.shippingDate,
+//     details: info.details,
+//     html: info.html
+//   }).save();
+//   callback(null);
+// };
 
-var seedDatabase = () => {
-  console.log(data.file);
-  data.file.forEach((prod) => {
-    console.log(prod)
-    saveDescription(prod, () => {
-      console.log('Inserted');
-    })
-  })
-}
+// var seedDatabase = () => {
+//   data.file.forEach((prod) => {
+//     saveDescription(prod, () => {
+//       console.log('Inserted');
+//     })
+//   })
+// }
 
 var getOverviewData = (params) => {
   return Overview.find({prod_name: params});
 }
 
-var get = () => {
-
+var getHtmlData = (params) => {
+  console.log('on Database func')
+  return overviewMain.find();
 }
 
-module.exports = {getOverviewData};
+module.exports = {getOverviewData, getHtmlData, db};

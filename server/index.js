@@ -10,21 +10,27 @@ var app = express();
 app.use(express.static(path.join(__dirname, '/../react-client/dist')));
 
 app.get('/buy/:prod_name/overview', (req, res) => {
-  console.log('In get ', req.params.prod_name);
   db.getOverviewData(req.params.prod_name)
   .then((data) => {
-    console.log(data);
+    console.log('data', data);
     res.status(201).send(data);
   })
   .catch((err) => {
     console.error(err);
-  })
+  });
   
 });
 
-// app.get('/*', (req, res) => {
-  //   res.redirect('/');
-  // })
+app.get('/buy/:prod_name/html', (req, res) => {
+  console.log('At server side')
+  db.getHtmlData(req.params.prod_name)
+    .then((data) => {
+      res.status(201).send(data);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+});
 
   app.get('/*', (req, res) => {
     // res.send('hello')
