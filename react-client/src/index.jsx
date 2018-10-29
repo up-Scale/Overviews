@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SocialShare from './components/SocialShare.jsx';
-import Specs from './components/Specs.jsx'
-import Shipping from './components/Shipping.jsx'
+import Specs from './components/Specs.jsx';
+import Shipping from './components/Shipping.jsx';
+// import Gallery from './components/Gallery.jsx';
 
 import styled from 'styled-components';
 import axios from 'axios'
@@ -39,25 +40,20 @@ class App extends React.Component {
       ],
       description:[],
       shippingDate:'Nov 27, 2018 PT',
-      specs:['Material: Copper',
-        'Titanium button',
-        'Mode sequence: L-M-H',
-        'Battery: 1 x AAA',
-        'Removable, reversible stainless steel pocket clip',
-        'IPX-8 waterproof',
-        '1.5 m impact resistant',
-        'Working voltage: 0.9 – 1.5V',
-        'Dimensions: 2.9 x 0.6 in (7.4 x 1.5 cm)',
-        'Weight (with battery): 1.5 oz (42.5 g)'],
+      specs:[],
       prod_name: 'massdrop-copper-aaa-pocket-flashlight',
       included: [],
       boxContent: [],
       descriptionHeader: [],
       imageHeader: [],
       images: [],
-      details: []
+      details: [],
+      html: ''
     }
-    this.getProductData = this.getProductData.bind(this)
+    this.getProductData = this.getProductData.bind(this);
+    this.getOverviewData = this.getOverviewData.bind(this);
+    this.convertToDangerously = this.convertToDangerously.bind(this);
+    this.findAndReplaceImage = this.findAndReplaceImage.bind(this);
   }
 
   componentDidMount() {
@@ -79,17 +75,60 @@ class App extends React.Component {
             images: response.data[0].images,
             shippingDate: response.data[0].shippingDate,
             details: response.data[0].details,
-            prod_name: response.data[0].prod_name
+            prod_name: response.data[0].prod_name,
+            html: response.data[0].html
           })
+      })
+      .then((result) => {
+        this.findAndReplaceImage();
+      })
+      .then(() => {
+        console.log('Done');
+      })
+      .catch((err) => {
+        console.error(err);
       })
   }
 
+  findAndReplaceImage() {
+    var htmlCopy = this.state.html;
+    var i = 0;
+    var index = 0 ;
+    // while(index <= htmlCopy.length) {
+      index = htmlCopy.indexOf("src", index);
+      index += 4;
+      String.prototype.splice = function(idx, rem, str) {
+        return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
+      };
+    
+      htmlCopy = htmlCopy.splice(index, 0, this.state.images[i]);
+      i++;
+    // }
+    this.setState({
+      html: htmlCopy
+    })
+    //console.log(index);
 
+  }
 
+  getOverviewData(prod_name) {
+    axios.get(`/buy/${prod_name}/html`)
+      .then((response) => {
+        console.log(response.data[0].html);
+        this.setState({
+          html: response.data[0].html
+        })
+      })
+  }
+
+  convertToDangerously(prod_name) {
+    return {__html: this.state.html};
+  }
 
   render () {
     return (
       <div>
+        <div dangerouslySetInnerHTML={this.convertToDangerously()}/>
         <section>
           <SocialShare onLoad={() => {this.getProductData(this.state.prod_name)}} icons={this.state.socialShareIcon}/>
         </section>
