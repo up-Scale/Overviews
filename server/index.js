@@ -21,16 +21,7 @@ app.get('/buy/:prod_name/overview', (req, res) => {
   
 });
 
-app.get('/buy/:prod_name/html', (req, res) => {
-  console.log('At server side')
-  db.getHtmlData(req.params.prod_name)
-    .then((data) => {
-      res.status(201).send(data);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-});
+
 
   app.get('/*', (req, res) => {
     // res.send('hello')
