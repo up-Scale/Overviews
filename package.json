@@ -6,7 +6,8 @@
   "scripts": {
     "react-dev": "webpack -d --watch",
     "server-dev": "nodemon server/index.js",
-    "seed": "node database-mongo/feedData.js"
+    "seed": "node database-mongo/feedData.js",
+    "test": "jest"
   },
   "author": "Hack Reactor",
   "license": "ISC",
@@ -22,12 +23,16 @@
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.17.2",
+    "chai": "^4.2.0",
     "express": "^4.15.0",
     "fs": "0.0.1-security",
+    "jest": "^23.6.0",
     "mongoose": "^4.8.6",
     "mysql": "^2.13.0",
+    "puppeteer": "^1.9.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
+    "request": "^2.88.0",
     "styled-components": "^4.0.2"
   }
 }

@@ -1,6 +1,11 @@
 var mongoose = require('mongoose');
 var data = require('./seed.js')
-mongoose.connect('mongodb://localhost/description');
+
+if(process.env.MLAB_URI) {
+  mongoose.connect(process.env.MLAB_URI)
+} else {
+  mongoose.connect('mongodb://localhost/description');
+}
 
 var db = mongoose.connection;
 
