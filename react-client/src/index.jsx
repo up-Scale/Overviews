@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import SocialShare from './components/SocialShare.jsx';
 import Specs from './components/Specs.jsx';
 import Shipping from './components/Shipping.jsx';
+import '../dist/styles.css'
 // import Gallery from './components/Gallery.jsx';
 
 import styled from 'styled-components';
@@ -57,14 +58,14 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log('im mounting!')
+    var name = window.location.pathname.slice(14);
+    console.log('prod_name', name);
     this.getProductData(this.state.prod_name);
   }
 
   getProductData(prod_name) {
     axios.get(`/buy/${prod_name}/overview`)
       .then((response) => {
-        console.log(response.data[0]);
           this.setState({
             specs: response.data[0].specs,
             included: response.data[0].included,
@@ -79,9 +80,9 @@ class App extends React.Component {
             html: response.data[0].html
           })
       })
-      .then((result) => {
-        this.findAndReplaceImage();
-      })
+      // .then((result) => {
+      //   this.findAndReplaceImage();
+      // })
       .then(() => {
         console.log('Done');
       })
@@ -107,7 +108,6 @@ class App extends React.Component {
     this.setState({
       html: htmlCopy
     })
-    //console.log(index);
 
   }
 
@@ -128,10 +128,12 @@ class App extends React.Component {
   render () {
     return (
       <div>
+          <div class="referral__share_button"><a href="https://www.w3schools.com/html/">SHARE: GIVE $10, GET $10</a>
+            <section>
+              <SocialShare onLoad={() => {this.getProductData(this.state.prod_name)}} icons={this.state.socialShareIcon}/>
+            </section>
+          </div>
         <div dangerouslySetInnerHTML={this.convertToDangerously()}/>
-        <section>
-          <SocialShare onLoad={() => {this.getProductData(this.state.prod_name)}} icons={this.state.socialShareIcon}/>
-        </section>
         <section>
           <H2>Specs</H2>
           <Specs specification={this.state.specs}></Specs>

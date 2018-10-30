@@ -6,7 +6,7 @@
   "scripts": {
     "react-dev": "webpack -d --watch",
     "server-dev": "nodemon server/index.js",
-    "seed": "nodemon /feedData.js"
+    "seed": "node database-mongo/feedData.js"
   },
   "author": "Hack Reactor",
   "license": "ISC",
@@ -15,6 +15,8 @@
     "babel-loader": "^6.3.2",
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-react": "^6.23.0",
+    "css-loader": "^1.0.1",
+    "style-loader": "^0.23.1",
     "webpack": "^2.2.1"
   },
   "dependencies": {
