@@ -52,7 +52,6 @@ p {
 
 .product_description__row {
   display: table;
-
 }
 
 
@@ -60,6 +59,8 @@ p {
   width: 100%;
   display: inline-block;
   position: relative;
+  max-width: 100%;
+  height: auto;
 }
 
 .product_description__column_container {
@@ -84,4 +85,9 @@ p {
   padding-top: 24px;
   margin-top: 24px;
   border-top: 1px solid #d9dede;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
