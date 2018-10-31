@@ -62,7 +62,7 @@ class App extends React.Component {
     this.setState({
       prod_name: name
     })
-    this.getProductData(this.state.prod_name);
+    this.getProductData(name);
   }
 
   getProductData(prod_name) {
