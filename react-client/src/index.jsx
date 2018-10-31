@@ -58,8 +58,11 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    var name = window.location.pathname.slice(14);
+    var name = window.location.pathname.slice(5);
     console.log('prod_name', name);
+    this.setState({
+      prod_name: name
+    })
     this.getProductData(this.state.prod_name);
   }
 
@@ -101,7 +104,6 @@ class App extends React.Component {
       String.prototype.splice = function(idx, rem, str) {
         return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
       };
-    
       htmlCopy = htmlCopy.splice(index, 0, this.state.images[i]);
       i++;
     // }
