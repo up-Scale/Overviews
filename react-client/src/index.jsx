@@ -73,19 +73,19 @@ export default class App extends React.Component {
 
   getProductData(prod_name) {
     axios.get(`/buy/${prod_name}/overview`)
-      .then((response) => {
+      .then(({data}) => {
           this.setState({
-            specs: response.data[0].specs,
-            included: response.data[0].included,
-            boxContent: response.data[0].boxContent,
-            descriptionHeader: response.data[0].descriptionHeader,
-            description: response.data[0].description,
-            imageHeader: response.data[0].imageHeader,
-            images: response.data[0].images,
-            shippingDate: response.data[0].shippingDate,
-            details: response.data[0].details,
-            prod_name: response.data[0].prod_name,
-            html: response.data[0].html
+            specs: data[0].specs,
+            included: data[0].included,
+            boxContent: data[0].boxContent,
+            descriptionHeader: data[0].descriptionHeader,
+            description: data[0].description,
+            imageHeader: data[0].imageHeader,
+            images: data[0].images,
+            shippingDate: data[0].shippingDate,
+            details: data[0].details,
+            prod_name: data[0].prod_name,
+            html: data[0].html
           })
       })
       // .then((result) => {
@@ -120,11 +120,14 @@ export default class App extends React.Component {
 
   getOverviewData(prod_name) {
     axios.get(`/buy/${prod_name}/html`)
-      .then((response) => {
-        console.log(response.data[0].html);
+      .then(({data}) => {
+        // console.log(response.data[0].html);
         this.setState({
-          html: response.data[0].html
+          html: data[0].html
         })
+      })
+      .catch((err) => {
+        console.error(err);
       })
   }
 

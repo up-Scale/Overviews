@@ -40,7 +40,6 @@ var getOverviewData = (params) => {
 }
 
 var getHtmlData = (params) => {
-  console.log('on Database func')
   return overviewMain.find();
 }
 
