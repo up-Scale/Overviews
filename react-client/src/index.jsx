@@ -26,7 +26,7 @@ const H2 = styled.h2`
   display: block;
 `
 
-class App extends React.Component {
+export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state ={
@@ -56,17 +56,6 @@ class App extends React.Component {
     this.convertToDangerously = this.convertToDangerously.bind(this);
     this.findAndReplaceImage = this.findAndReplaceImage.bind(this);
   }
-
-  // if(name.length != 0) {
-  //   this.setState({
-  //       prod_name: name
-  //     },
-  //     () =>  this.getProductData(name)
-  //   );
-
-  // } else {
-  //   this.getProductData(this.state.prod_name);
-  // }
 
 
   componentDidMount() {
@@ -169,4 +158,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+//ReactDOM.render(<App />, document.getElementById('app'));
