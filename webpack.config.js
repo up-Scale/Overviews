@@ -5,6 +5,7 @@ var DIST_DIR = path.join(__dirname, '/react-client/dist');
 module.exports = {
   entry: `${SRC_DIR}/index.js`,
   output: {
+    publicPaths: '/',
     filename: 'bundle.js',
     path: DIST_DIR
   },
