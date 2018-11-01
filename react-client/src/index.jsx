@@ -30,9 +30,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state ={
-      socialShareIcon: ['https://png.icons8.com/color/2x/facebook.png', 
-                        'https://png.icons8.com/color/2x/twitter-squared.png', 
-                        'https://png.icons8.com/color/2x/secured-letter.png', 
+      socialShareIcon: ['https://png.icons8.com/color/2x/facebook.png',
+                        'https://png.icons8.com/color/2x/twitter-squared.png',
+                        'https://png.icons8.com/color/2x/secured-letter.png',
                         'https://png.icons8.com/windows/2x/copy-link.png'
                       ],
       socialShareLink: [ 'https://twitter.com/intent/tweet?url=http%3A%2F%2Fdro.ps%2Fb%2FAe94eO7AQm5O%2Ft&text=Get%20%2410%20off%20your%20first%20purchase%20on%20Massdrop.%20Sign%20up%20and%20check%20out%20the%20%22Massdrop%20CTRL%20High-Profile%20Mechanical%20Ke...%22%3A&original_referer=https%3A%2F%2Ftwitter.com%2Fshare%3Furl%3Dhttp%253A%252F%252Fdro.ps%252Fb%252FAe94eO7AQm5O%252Ft%26text%3DGet%2520%252410%2520off%2520your%2520first%2520purchase%2520on%2520Massdrop.%2520Sign%2520up%2520and%2520check%2520out%2520the%2520%2522Massdrop%2520CTRL%2520High-Profile%2520Mechanical%2520Ke...%2522%253A',
@@ -59,11 +59,10 @@ class App extends React.Component {
 
   componentDidMount() {
     var name = window.location.pathname.slice(5);
-    console.log('prod_name', name);
     this.setState({
       prod_name: name
     })
-    this.getProductData(this.state.prod_name);
+    this.getProductData(name);
   }
 
   getProductData(prod_name) {
@@ -87,7 +86,7 @@ class App extends React.Component {
       //   this.findAndReplaceImage();
       // })
       .then(() => {
-        console.log('Done');
+        return null;
       })
       .catch((err) => {
         console.error(err);
@@ -130,7 +129,7 @@ class App extends React.Component {
   render () {
     return (
       <div>
-          <div class="referral__share_button"><a href="https://www.w3schools.com/html/">SHARE: GIVE $10, GET $10</a>
+          <div className="referral__share_button"><a href="https://www.w3schools.com/html/">SHARE: GIVE $10, GET $10</a>
             <section>
               <SocialShare onLoad={() => {this.getProductData(this.state.prod_name)}} icons={this.state.socialShareIcon}/>
             </section>

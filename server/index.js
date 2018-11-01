@@ -12,13 +12,12 @@ app.use(express.static(path.join(__dirname, '/../react-client/dist')));
 app.get('/buy/:prod_name/overview', (req, res) => {
   db.getOverviewData(req.params.prod_name)
   .then((data) => {
-    console.log('data', data);
     res.status(201).send(data);
   })
   .catch((err) => {
     console.error(err);
   });
-  
+
 });
 
 
@@ -27,9 +26,8 @@ app.get('/buy/:prod_name/overview', (req, res) => {
     // res.send('hello')
     res.sendFile(path.join(__dirname, '/../react-client/dist/index.html'))
   });
-  
+
   app.listen(port, function() {
     console.log('listening on port 3003!');
   });
-  
-  
+
