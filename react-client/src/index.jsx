@@ -42,7 +42,7 @@ class App extends React.Component {
       description:[],
       shippingDate:'Nov 27, 2018 PT',
       specs:[],
-      prod_name: 'massdrop-copper-aaa-pocket-flashlight',
+      prod_name: 'flashlight' || window.location.pathname.slice(5),
       included: [],
       boxContent: [],
       descriptionHeader: [],
@@ -57,12 +57,29 @@ class App extends React.Component {
     this.findAndReplaceImage = this.findAndReplaceImage.bind(this);
   }
 
+  // if(name.length != 0) {
+  //   this.setState({
+  //       prod_name: name
+  //     },
+  //     () =>  this.getProductData(name)
+  //   );
+
+  // } else {
+  //   this.getProductData(this.state.prod_name);
+  // }
+
+
   componentDidMount() {
     var name = window.location.pathname.slice(5);
-    this.setState({
-      prod_name: name
-    })
-    this.getProductData(name);
+    if(name.length != 0) {
+      this.setState({
+          prod_name: name
+        },
+        () => this.getProductData(this.state.prod_name)
+      );
+
+    } else this.getProductData(this.state.prod_name);
+
   }
 
   getProductData(prod_name) {
