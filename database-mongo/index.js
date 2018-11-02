@@ -1,14 +1,14 @@
 var mongoose = require('mongoose');
 var data = require('./seed.js')
-var { username, password } = require('../config.js')
+//var { username, password } = require('../config.js')
 
-mongoose.connect(`mongodb://${username}:${password}@ds141972.mlab.com:41972/description`)
+//mongoose.connect(`mongodb://${username}:${password}@ds141972.mlab.com:41972/description`)
 
-// if(process.env.MLAB_URI) {
-//   mongoose.connect(process.env.MLAB_URI)
-// } else {
-//   mongoose.connect('mongodb://localhost/description');
-// }
+if(process.env.MLAB_URI) {
+  mongoose.connect(process.env.MLAB_URI)
+} else {
+  mongoose.connect('mongodb://localhost/description');
+}
 
 var db = mongoose.connection;
 
