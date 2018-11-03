@@ -1,15 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
-
-
-// Icon
-
-
-
-//non-container style wrapper for scrollview
-// footerWrapperNC: {
-//   flexDirection:'column',
-// },
 
 const SocialShare = (props) => (
   <div className="socialButton">
@@ -26,32 +15,3 @@ const SocialShare = (props) => (
 )
 
 export default SocialShare;
-/*
-border: none;
-font-size: 24px;
-line-height: 32px;
-width: 32px;
-height: 32px;
--webkit-transform: rotate(-45deg);
-transform: rotate(-45deg);
-display: inline-block;
-vertical-align: middle;
-font-family: 'Material Icons';
-font-weight: normal;
-font-style: normal;
-white-space: nowrap;
-word-wrap: normal;
-direction: ltr;
--webkit-font-smoothing: antialiased;
-border: 1px solid #0645ad;
-border-radius: 3px;
-color: #0645ad;
-height: 32px;
-width: 32px;
-list-style: none;
-margin: 0 10px 0 0;
-margin-right: 10px;
-display: inline-block;
-vertical-align: middle;
-margin-right: 16px;
-*/

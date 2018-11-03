@@ -6,25 +6,25 @@ import Shipping from './components/Shipping.jsx';
 import '../dist/styles.css'
 // import Gallery from './components/Gallery.jsx';
 
-import styled from 'styled-components';
+//import styled from 'styled-components';
 import axios from 'axios'
 
 
-const H2 = styled.h2`
-  font-family: gordita,Helvetica,Arial,Verdana,sans-serif;
-  font-size: 10px;
-  font-weight: 550;
-  line-height: inherit;
-  color: #042b28;
-  margin-bottom: 20px;
-  max-width: none!important;
-  margin: 0 0 16px;
-  margin-block-start: 0.83em;
-  margin-block-end: 0.83em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  display: block;
-`
+// const H2 = styled.h2`
+//   font-family: gordita,Helvetica,Arial,Verdana,sans-serif;
+//   font-size: 10px;
+//   font-weight: 550;
+//   line-height: inherit;
+//   color: #042b28;
+//   margin-bottom: 20px;
+//   max-width: none!important;
+//   margin: 0 0 16px;
+//   margin-block-start: 0.83em;
+//   margin-block-end: 0.83em;
+//   margin-inline-start: 0px;
+//   margin-inline-end: 0px;
+//   display: block;
+// `
 
 export default class App extends React.Component {
   constructor(props) {
@@ -52,7 +52,6 @@ export default class App extends React.Component {
       html: ''
     }
     this.getProductData = this.getProductData.bind(this);
-    this.getOverviewData = this.getOverviewData.bind(this);
     this.convertToDangerously = this.convertToDangerously.bind(this);
     this.findAndReplaceImage = this.findAndReplaceImage.bind(this);
   }
@@ -118,18 +117,6 @@ export default class App extends React.Component {
 
   }
 
-  getOverviewData(prod_name) {
-    axios.get(`/buy/${prod_name}/html`)
-      .then(({data}) => {
-        // console.log(response.data[0].html);
-        this.setState({
-          html: data[0].html
-        })
-      })
-      .catch((err) => {
-        console.error(err);
-      })
-  }
 
   convertToDangerously(prod_name) {
     return {__html: this.state.html};
@@ -145,15 +132,15 @@ export default class App extends React.Component {
           </div>
         <div dangerouslySetInnerHTML={this.convertToDangerously()}/>
         <section>
-          <H2>Specs</H2>
+          <h2>Specs</h2>
           <Specs specification={this.state.specs}></Specs>
         </section>
         <section>
-          <H2>Included</H2>
+          <h2>Included</h2>
           <Specs specification={this.state.included}></Specs>
         </section>
         <section>
-          <H2>Shipping</H2>
+          <h2>Shipping</h2>
           <Shipping estimatedDate={this.state.estimatedDate}></Shipping>
         </section>
       </div>
