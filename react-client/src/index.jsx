@@ -4,27 +4,9 @@ import SocialShare from './components/SocialShare.jsx';
 import Specs from './components/Specs.jsx';
 import Shipping from './components/Shipping.jsx';
 import '../dist/styles.css'
-// import Gallery from './components/Gallery.jsx';
 
-//import styled from 'styled-components';
 import axios from 'axios'
 
-
-// const H2 = styled.h2`
-//   font-family: gordita,Helvetica,Arial,Verdana,sans-serif;
-//   font-size: 10px;
-//   font-weight: 550;
-//   line-height: inherit;
-//   color: #042b28;
-//   margin-bottom: 20px;
-//   max-width: none!important;
-//   margin: 0 0 16px;
-//   margin-block-start: 0.83em;
-//   margin-block-end: 0.83em;
-//   margin-inline-start: 0px;
-//   margin-inline-end: 0px;
-//   display: block;
-// `
 
 export default class App extends React.Component {
   constructor(props) {
@@ -54,6 +36,9 @@ export default class App extends React.Component {
     this.getProductData = this.getProductData.bind(this);
     this.convertToDangerously = this.convertToDangerously.bind(this);
     this.findAndReplaceImage = this.findAndReplaceImage.bind(this);
+    this.renderindSpecs = this.renderindSpecs.bind(this);
+    this.renderingIncluded = this.renderingIncluded.bind(this);
+    this.renderindShipping = this.renderindShipping.bind(this);
   }
 
 
@@ -117,6 +102,43 @@ export default class App extends React.Component {
 
   }
 
+  renderindSpecs() {
+    console.log(this.state.included.length);
+    if (this.state.specs.length !== 0) {
+      console.log('hello!');
+      return (
+        <section>
+          <h2>Specs</h2>
+          <Specs specification={this.state.specs}></Specs>
+        </section>
+      )
+    }
+  }
+
+  renderingIncluded() {
+    if (this.state.included.length !== 0) {
+      console.log('included');
+      return (
+        <section>
+          <h2>Included</h2>
+          <Specs specification={this.state.included}></Specs>
+        </section>
+      )
+    }
+  }
+
+  renderindShipping() {
+    if (this.state.shippingDate) {
+      console.log('estimatedDate');
+      return (
+        <section>
+          <h2>Shipping</h2>
+          <Shipping specification={this.state.shippingDate}></Shipping>
+        </section>
+      )
+    }
+  }
+
 
   convertToDangerously(prod_name) {
     return {__html: this.state.html};
@@ -132,16 +154,13 @@ export default class App extends React.Component {
           </div>
         <div dangerouslySetInnerHTML={this.convertToDangerously()}/>
         <section>
-          <h2>Specs</h2>
-          <Specs specification={this.state.specs}></Specs>
+          {this.renderindSpecs()}
         </section>
         <section>
-          <h2>Included</h2>
-          <Specs specification={this.state.included}></Specs>
+         {this.renderingIncluded()}
         </section>
         <section>
-          <h2>Shipping</h2>
-          <Shipping estimatedDate={this.state.estimatedDate}></Shipping>
+          {this.renderindShipping()}
         </section>
       </div>
     )
