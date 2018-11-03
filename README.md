@@ -1,11 +1,20 @@
-# DD-OverviewOfAProduct
-Displays the product information along with images and with social sharing button.
+Getting Started
 
-Need to work on Social-share-icon
+Note: Nodemon should be installed globally.
 
-Need to Overview tab.
+Optional: you can get the data from my MLAB server
 
-----------TODO------
+(Run npm seed to seed the data in the database)
 
-1. Left the database-mysql and database-mongo for future decision of the database.
+Run 'npm install'.
 
+Run 'npm run react-dev' to create a bundle.js file.
+
+Run 'npm start'.
+
+open localhost:3003
+
+http://ec2-54-213-205-51.us-west-2.compute.amazonaws.com/
+
+end-Points: /buy/headphones
+            /buy/flashlights
