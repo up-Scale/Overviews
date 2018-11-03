@@ -1,10 +1,13 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var path = require('path');
-var port = process.env.PORT || 3003;
- var db = require('../database-mongo/index.js')
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
+const cors = require('cors');
+const port = process.env.PORT || 3003;
+const db = require('../database-mongo/index.js')
 
-var app = express();
+const app = express();
+
+app.use(cors());
 
 
 app.use(express.static(path.join(__dirname, '/../react-client/dist')));
