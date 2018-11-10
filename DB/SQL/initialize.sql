@@ -14,6 +14,16 @@ CREATE TABLE descriptions (
   INDEX (productId)
 );
 
+CREATE TABLE attributes (
+  productId integer,
+  PRIMARY KEY(productId),
+  category char(20),
+  video varchar(100),
+  shippingDate char(20),
+  included TEXT,
+  specs TEXT
+);
+
 CREATE TABLE images (
   id INTEGER AUTO_INCREMENT,
   url TINYTEXT,
