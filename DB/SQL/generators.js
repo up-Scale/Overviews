@@ -8,10 +8,18 @@ const generateImages = function(productId) {
   return images;
 };
 
-const generateImagesBatch = function(stream, batchSize, startingProductId = 0) {
+const generateDescriptions = function(productId) {
+  let rows = '';
+  for (let j = 0; j <= casual.integer(3, 6); j++) {
+    rows += `${casual.title}\r${casual.description}\r${productId}\n`
+  };
+  return rows;
+}
+
+const generateBatch = function(generator, batchSize, startingProductId = 0) {
   let batch = '';
-  for (let i = 0; i <= batchSize; i++) { batch += generateImages(startingProductId++) }
-  stream.write(batch)
+  for (let i = 0; i <= batchSize; i++) { batch += generator(startingProductId++) }
+  return batch;
 };
 
 const generateSQLData = function(rounds, batchSize, generator, stream) {
@@ -23,13 +31,15 @@ const generateSQLData = function(rounds, batchSize, generator, stream) {
   })
 
   stream.on('drain', function() {
+    console.log('drain triggered')
     if (round++ < rounds) {
-      generator(stream, batchSize, productId += batchSize);
+      console.log('another round?')
+      stream.write(generateBatch(generator, batchSize, productId += batchSize));
     } else stream.end();
   });
 
-  generator(stream, batchSize, productId)
+  stream.write(generateBatch(generator, batchSize, productId));
 }
 
 
-module.exports = { generateImagesBatch, generateSQLData }
+module.exports = { generateImages, generateSQLData, generateDescriptions }

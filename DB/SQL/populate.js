@@ -1,12 +1,20 @@
 const fs = require('fs');
 const imagesStream = fs.createWriteStream('./csv/images.csv');
 const descriptionsStream = fs.createWriteStream('./csv/descriptions.csv');
-const { generateImagesBatch, generateSQLData } = require('./generators');
+const { generateImages, generateDescriptions, generateSQLData } = require('./generators');
 
 
-generateSQLData(100, 50, generateImagesBatch, imagesStream);
-
-
+// generateSQLData(10, 5, generateImages, imagesStream);
+// generateSQLData(10, 5, generateDescriptions, descriptionsStream);
+imagesStream.on('drain', function() {
+  console.log('draining')
+})
+imagesStream.write('hello world')
+imagesStream.write('another hello')
+imagesStream.on('finish', function() {
+  console.log('good bye world')
+})
+imagesStream.end();
 
 
 
