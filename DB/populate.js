@@ -6,12 +6,12 @@ const productsStream = fs.createWriteStream('./json/products.json');
 const { generateImages, generateDescriptions, generateAttributes, generateProducts, generateData } = require('./generators');
 
 
-generateData(1, 10, generateImages, imagesStream);
-generateData(1, 10, generateDescriptions, descriptionsStream);
-generateData(1, 10, generateAttributes, attributesStream);
+// generateData(24, 10, generateImages, imagesStream);
+// generateData(1, 10, generateDescriptions, descriptionsStream);
+// generateData(1, 10, generateAttributes, attributesStream);
 
 //json
-generateData(1, 10, generateProducts, productsStream);
+generateData(1, 100, generateProducts, productsStream);
 
 
 

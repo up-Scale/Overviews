@@ -29,15 +29,15 @@ CREATE TABLE attributes (
 CREATE TABLE images (
   id INTEGER AUTO_INCREMENT,
   url TINYTEXT,
-  productId INTEGER,
+  descriptionId INTEGER,
   PRIMARY KEY(id),
-  INDEX (productId)
+  INDEX (descriptionId)
 );
 
 LOAD DATA LOCAL INFILE '/home/zpei/SDC/Overview/DB/csv/images.csv' INTO TABLE images
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
-(url, productId);
+(url, descriptionId);
 
 LOAD DATA LOCAL INFILE '/home/zpei/SDC/Overview/DB/csv/descriptions.csv' INTO TABLE descriptions
 FIELDS TERMINATED BY '\r'

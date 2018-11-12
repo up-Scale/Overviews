@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 mongoose.connect(
   'mongodb://localhost/SDC',
-  { userNewUrlParser: true }
+  { useNewUrlParser: true }
 );
 
 const db = mongoose.connection;
@@ -23,8 +23,7 @@ const productSchema = new mongoose.Schema({
     included: [String],
     specs: [String]
   },
-  images: [String],
-  descriptions: [String]
+  descriptions: [Object]
 });
 
 const Product = mongoose.model('products', productSchema);
