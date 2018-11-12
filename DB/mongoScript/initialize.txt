@@ -1,0 +1,2 @@
+use SDC
+db.overviews.remove({})

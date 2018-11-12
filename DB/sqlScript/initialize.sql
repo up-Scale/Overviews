@@ -4,6 +4,7 @@ USE overviews;
 
 DROP TABLE IF EXISTS descriptions;
 DROP TABLE IF EXISTS images;
+DROP TABLE IF EXISTS attributes;
 
 CREATE TABLE descriptions (
   id INTEGER AUTO_INCREMENT,
@@ -31,3 +32,18 @@ CREATE TABLE images (
   PRIMARY KEY(id),
   INDEX (productId)
 );
+
+LOAD DATA LOCAL INFILE '/home/zpei/SDC/Overview/DB/csv/images.csv' INTO TABLE images
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+(url, productId);
+
+LOAD DATA LOCAL INFILE '/home/zpei/SDC/Overview/DB/csv/descriptions.csv' INTO TABLE descriptions
+FIELDS TERMINATED BY '\r'
+LINES TERMINATED BY '\n'
+(header, content, productId);
+
+LOAD DATA LOCAL INFILE '/home/zpei/SDC/Overview/DB/csv/attributes.csv' INTO TABLE attributes
+FIELDS TERMINATED BY '\r'
+LINES TERMINATED BY '\n'
+(productId, category, video, included, specs);
