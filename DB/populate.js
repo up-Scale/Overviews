@@ -1,12 +1,15 @@
 const fs = require('fs');
 const imagesStream = fs.createWriteStream('./csv/images.csv');
 const descriptionsStream = fs.createWriteStream('./csv/descriptions.csv');
-const { generateImagesBatch, generateSQLData } = require('./generators');
+const attributesStream = fs.createWriteStream('./csv/attributes.csv');
+const productsStream = fs.createWriteStream('./json/products.json');
+const { generateImages, generateDescriptions, generateAttributes, generateProducts, generateData } = require('./generators');
 
 
-generateSQLData(100, 50, generateImagesBatch, imagesStream);
-
-
+// generateData(10, 1000, generateImages, imagesStream);
+// generateData(10, 1000, generateDescriptions, descriptionsStream);
+// generateData(10, 1000, generateAttributes, attributesStream);
+generateData(10, 1000, generateProducts, productsStream);
 
 
 
