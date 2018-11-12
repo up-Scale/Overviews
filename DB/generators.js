@@ -23,7 +23,7 @@ const generateDescriptions = function(productId) {
 };
 
 const generateAttributes = function(productId) {
-  return `${productId}\r${categories[casual.integer(0,25)]}\rhttps://www.youtube.com/results?search_query=massdrop\r${casual.date()}\r${generateStringOfWords(5, 20)}\r${generateStringOfWords(10, 50)}\n`
+  return `product${productId}\r${productId}\r${categories[casual.integer(0,25)]}\rhttps://www.youtube.com/results?search_query=massdrop\r${casual.date()}\r${generateStringOfWords(5, 20)}\r${generateStringOfWords(10, 50)}\n`
 };
 
 const generateProducts = function(productId) {
@@ -44,7 +44,12 @@ const generateProducts = function(productId) {
   });
 
   return JSON.stringify({
-    productId, category: categories[casual.integer(0,25)], attributes, images, descriptions
+    productName: 'product'+productId,
+    productId, 
+    category: categories[casual.integer(0,25)], 
+    attributes, 
+    images, 
+    descriptions
   })
 };
 

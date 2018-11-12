@@ -16,6 +16,7 @@ CREATE TABLE descriptions (
 );
 
 CREATE TABLE attributes (
+  productName char(50),
   productId integer,
   PRIMARY KEY(productId),
   category char(20),
@@ -46,4 +47,4 @@ LINES TERMINATED BY '\n'
 LOAD DATA LOCAL INFILE '/home/zpei/SDC/Overview/DB/csv/attributes.csv' INTO TABLE attributes
 FIELDS TERMINATED BY '\r'
 LINES TERMINATED BY '\n'
-(productId, category, video, included, specs);
+(productName, productId, category, video, included, specs);
