@@ -27,7 +27,7 @@ export default class Overviews extends React.Component {
       html: '',
       shippingDate: 'Nov 27, 2018 PT',
       specs: [],
-      prod_name: 'flashlight' || window.location.pathname.slice(5),
+      productName: 'flashlight' || window.location.pathname.slice(5),
       included: [],
       // images: [],
     };
@@ -41,7 +41,7 @@ export default class Overviews extends React.Component {
   }
 
   componentDidMount() {
-    this.setState(this.props.initialState, this.findAndReplaceImage);
+    this.setState(this.props.initialState);
   }
 
   // componentDidMount() {
@@ -107,8 +107,6 @@ export default class Overviews extends React.Component {
   }
 
   renderindSpecs() {
-    console.log('specs', this.state.specs);
-
     if (this.state.specs.length !== 0) {
       return (
         <section>

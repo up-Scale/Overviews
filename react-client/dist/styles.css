@@ -40,12 +40,23 @@ h2.product_description__header {
 }
 
 li {
+  box-sizing: border-box;
+  color:rgb(91, 106, 105);
   display: list-item;
-  font-family: Lato,Helvetica,Arial,Verdana,sans-serif;
-  font-size: 8.5px;
-  font-weight: 300;
-  line-height: 15px;
-  color: #5b6a69;
+  font-family: Lato, Helvetica, Arial, Verdana, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  height: 28px;
+  line-height: 28px;
+  list-style-image: none;
+  list-style-position: outside;
+  list-style-type: disc;
+  text-align: left;
+  text-size-adjust: 100%;
+  width: 806px;
+  -webkit-box-direction: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color:rgba(0, 0, 0, 0)
 }
 
 ul {
@@ -138,3 +149,4 @@ img {
   max-width: 100%;
   height: auto;
 }
+
