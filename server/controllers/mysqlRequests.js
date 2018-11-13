@@ -1,6 +1,9 @@
 const axios = require('axios');
 
+const host = process.ENV ? process.ENV.HOST : 'http://localhost:3001';
+
 //insert page:
+//verified working:
 const dummyProduct = {
   "productName": "keyboard",
   "category": "gaming",
@@ -24,53 +27,81 @@ const dummyProduct = {
   ]
 };
 
+axios.post(`${host}/mysql/insertProduct`, dummyProduct);
 
-
-axios.post(`http://localhost:3001/mysql/insertProduct`, dummyProduct);
+//-----------------------------------------------------------------------------
 
 //get page:
+//verified working:
 const productName = 'product1234'
-axios.get(`http://localhost:3001/mysql/getProduct/${productName}`);
+axios.get(`${host}/mysql/getProduct/${productName}`);
+
+//-----------------------------------------------------------------------------
 
 //update shipping:
-const shippingDate = {shippingDate: 'a new day', productName: 'product1234'}
-axios.post(`http://localhost:3001/mysql/updateShipping`, shippingDate);
+//verified working:
+const shippingDate = {
+  shippingDate: 'new day after update', 
+  productName: 'keyboard'
+}
+axios.post(`${host}/mysql/updateShipping`, shippingDate);
+
+//-----------------------------------------------------------------------------
 
 //update description:
+//verified working:
 const description = {
-	"header": "this is a new header",
+	"header": "this is a new header after update",
 	"content": "this is a new paragraph replacing the old content",
 	"descriptionId": 12345,
 };
 
-axios.post(`http://localhost:3001/mysql/updateDescription`, description);
+axios.post(`${host}/mysql/updateDescription`, description);
+
+//-----------------------------------------------------------------------------
 
 //add description: 
+//verfified working:
 const newDescription = {
 	"header": "this is the header for a new description",
 	"content": "this is the content for a new description",
-	"productId": 1234
+	"productId": 12345
 };
 
-axios.post(`http://localhost:3001/mysql/addDescription`, newDescription);
+axios.post(`${host}/mysql/addDescription`, newDescription);
+
+//-----------------------------------------------------------------------------
 
 //delete descrioption:
+//verified working:
 const descriptionId = {
-  id: 5678
+  data: {
+    id: 123
+  }
 };
 
-axios.delete(`http://localhost:3001/mysql/deleteDescription`, descriptionId);
+axios.delete(`${host}/mysql/deleteDescription`, descriptionId);
+
+//-----------------------------------------------------------------------------
 
 //add image:
+//verified working:
 const image = {
-	"url": "this is a new image url",
+	"url": "this is a new image url after insert",
 	"descriptionId" : 50000
 };
 
-axios.post(`http://localhost:3001/mysql/addImage`, image);
+axios.post(`${host}/mysql/addImage`, image);
+
+//-----------------------------------------------------------------------------
 
 //delete image:
-const imageId = {id: 123456};
+//verified working:
+const imageId = {
+  data: {
+    id: 123456
+  }
+};
 axios.delete(`http://localhost:3001/mysql/deleteImage`, imageId);
 
 

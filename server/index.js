@@ -29,7 +29,7 @@ app.post('/mysql/insertProduct', mysqlInsertByProductName);
 app.post('/mysql/updateShipping', mysqlUpdateShipping);
 app.post('/mysql/updateDescription', mysqlUpdateDescriptions);
 app.post('/mysql/addDescription', mysqlAddDescriptions);
-app.delete('/mysql/mysqlDeleteDescription', mysqlDeleteDescription);
+app.delete('/mysql/deleteDescription', mysqlDeleteDescription);
 app.post('/mysql/AddImage', mysqlAddImage);
 app.delete('/mysql/deleteImage', mysqlDeleteImage);
 
