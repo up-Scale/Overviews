@@ -2,22 +2,21 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import path from 'path';
 import cors from 'cors';
-import { renderToString } from "react-dom/server";
-import React from 'react';
+
 import Product from '../DB/mongoClient/client';
 
-import Descriptions from './client/Descriptions';
-import Overviews from '../react-client/src/components/Overviews.jsx';
+import { mysqlGetByProductName, mysqlInsertByProductName, mysqlUpdateShipping, mysqlUpdateDescriptions, mysqlAddImage, mysqlDeleteImage, mysqlDeleteDescription, mysqlAddDescriptions } from './controllers/mysqlControllers';
+
 
 const port = process.env.PORT || 3001;
 
 const app = express();
 
 app.use(cors());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser());
 app.use(express.static(path.join(__dirname, '/../react-client/dist')));
 
-app.get('/mongo/:productName', (req, res) => {
+app.get('/mongo/getProduct/:productName', (req, res) => {
   const productName = req.params.productName;
   Product.find({productName}).then(data => {
     const product = data[0];
@@ -29,7 +28,19 @@ app.get('/mongo/:productName', (req, res) => {
 
     res.status(200).send({initialState, overviewsHtml});
   });
-})
+});
+
+app.get('/mysql/getProduct/:productName', mysqlGetByProductName);
+app.post('/mysql/insertProduct', mysqlInsertByProductName);
+
+app.post('/mysql/updateShipping', mysqlUpdateShipping);
+
+app.post('/mysql/updateDescription', mysqlUpdateDescriptions);
+app.post('/mysql/addDescription', mysqlAddDescriptions);
+app.delete('/mysql/mysqlDeleteDescription', mysqlDeleteDescription);
+
+app.post('/mysql/AddImage', mysqlAddImage);
+app.delete('/mysql/deleteImage', mysqlDeleteImage);
 
 app.listen(port, function() {
   console.log('listening on port 3001!');
