@@ -1,25 +1,24 @@
-CREATE DATABASE IF NOT EXISTS overviews;
-
-USE overviews;
+CREATE DATABASE IF NOT EXISTS overviews; USE overviews;
 
 DROP TABLE IF EXISTS descriptions;
 DROP TABLE IF EXISTS images;
 DROP TABLE IF EXISTS attributes;
 
 CREATE TABLE attributes (
-  productName char(50),
-  productId integer,
+  productName CHAR(50),
+  productId INTEGER AUTO_INCREMENT,
   PRIMARY KEY(productId),
-  category char(20),
-  video varchar(100),
-  shippingDate char(20),
+  category CHAR(20),
+  video VARCHAR(100),
+  shippingDate CHAR(20),
   included TEXT,
-  specs TEXT
+  specs TEXT,
+  INDEX (productName)
 );
 
 CREATE TABLE descriptions (
   id INTEGER AUTO_INCREMENT,
-  header VARCHAR(50) not null,
+  header VARCHAR(50) NOT NULL,
   content TEXT NOT NULL,
   PRIMARY KEY(id),
   productId INTEGER,
