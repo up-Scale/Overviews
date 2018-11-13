@@ -6,15 +6,6 @@ DROP TABLE IF EXISTS descriptions;
 DROP TABLE IF EXISTS images;
 DROP TABLE IF EXISTS attributes;
 
-CREATE TABLE descriptions (
-  id INTEGER AUTO_INCREMENT,
-  header VARCHAR(50) not null,
-  content TEXT NOT NULL,
-  PRIMARY KEY(id),
-  productId INTEGER,
-  INDEX (productId)
-);
-
 CREATE TABLE attributes (
   productName char(50),
   productId integer,
@@ -24,6 +15,15 @@ CREATE TABLE attributes (
   shippingDate char(20),
   included TEXT,
   specs TEXT
+);
+
+CREATE TABLE descriptions (
+  id INTEGER AUTO_INCREMENT,
+  header VARCHAR(50) not null,
+  content TEXT NOT NULL,
+  PRIMARY KEY(id),
+  productId INTEGER,
+  INDEX (productId)
 );
 
 CREATE TABLE images (
@@ -47,4 +47,4 @@ LINES TERMINATED BY '\n'
 LOAD DATA LOCAL INFILE '/home/zpei/SDC/Overview/DB/csv/attributes.csv' INTO TABLE attributes
 FIELDS TERMINATED BY '\r'
 LINES TERMINATED BY '\n'
-(productName, productId, category, video, included, specs);
+(productName, productId, category, video, shippingDate, included, specs);

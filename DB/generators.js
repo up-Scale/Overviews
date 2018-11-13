@@ -41,8 +41,6 @@ const generateProducts = function(productId) {
     specs: generateArrayOfWords(10, 50)
   };
 
-  console.log('attributes: ' , attributes)
-
   for (let j = 0; j <= casual.integer(2, 5); j++) {
     let images = [];
     for (let j = 0; j <= casual.integer(1, 3); j++)
