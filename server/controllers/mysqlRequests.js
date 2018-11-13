@@ -24,7 +24,9 @@ const dummyProduct = {
   ]
 };
 
-axios.post('http://localhost:3001/mysql/insertProduct', dummyProduct);
+
+
+axios.post(`http://localhost:3001/mysql/insertProduct`, dummyProduct);
 
 //get page:
 const productName = 'product1234'
@@ -32,7 +34,7 @@ axios.get(`http://localhost:3001/mysql/getProduct/${productName}`);
 
 //update shipping:
 const shippingDate = {shippingDate: 'a new day', productName: 'product1234'}
-axios.post('http://localhost:3001/mysql/updateShipping', shippingDate);
+axios.post(`http://localhost:3001/mysql/updateShipping`, shippingDate);
 
 //update description:
 const description = {
@@ -41,6 +43,8 @@ const description = {
 	"descriptionId": 12345,
 };
 
+axios.post(`http://localhost:3001/mysql/updateDescription`, description);
+
 //add description: 
 const newDescription = {
 	"header": "this is the header for a new description",
@@ -48,14 +52,14 @@ const newDescription = {
 	"productId": 1234
 };
 
-axios.post('http://localhost:3001/mysql/addDescription', newDescription);
+axios.post(`http://localhost:3001/mysql/addDescription`, newDescription);
 
 //delete descrioption:
 const descriptionId = {
   id: 5678
 };
 
-axios.delete('http://localhost:3001/mysql/deleteDescription', descriptionId);
+axios.delete(`http://localhost:3001/mysql/deleteDescription`, descriptionId);
 
 //add image:
 const image = {
@@ -63,10 +67,10 @@ const image = {
 	"descriptionId" : 50000
 };
 
-axios.post('http://localhost:3001/mysql/addImage', image);
+axios.post(`http://localhost:3001/mysql/addImage`, image);
 
 //delete image:
 const imageId = {id: 123456};
-axios.delete('http://localhost:3001/mysql/deleteImage', imageId);
+axios.delete(`http://localhost:3001/mysql/deleteImage`, imageId);
 
 
