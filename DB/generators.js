@@ -60,7 +60,6 @@ const generateProducts = function(productId) {
 
   return JSON.stringify({
     productName: 'product' + productId,
-    productId,
     category: categories[casual.integer(0, 25)],
     attributes,
     descriptions

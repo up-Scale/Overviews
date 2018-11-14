@@ -11,7 +11,8 @@ const { generateImages, generateDescriptions, generateAttributes, generateProduc
 // generateData(10, 1000, generateAttributes, attributesStream);
 
 //json
-// generateData(1, 100, generateProducts, productsStream);
+generateData(10, 1000, generateProducts, productsStream);
+
 
 
 

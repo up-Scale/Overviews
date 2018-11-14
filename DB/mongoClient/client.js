@@ -15,7 +15,6 @@ db.once('open', function() {
 
 const productSchema = new mongoose.Schema({
   productName: String,
-  productId: Number,
   category: String,
   attributes: {
     video: String,
